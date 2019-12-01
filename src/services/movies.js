@@ -1,35 +1,18 @@
-
+import axios from 'axios'
  class MoviesService {
     constructor() {
+        const instance = axios.create({
+            baseURL: 'http://www.omdbapi.com/',
+            headers: {Accept: 'application/json'}
+        });
 
+        this.apiClient = instance;
     }
 
-    getMovies() {
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve( [
-                    {
-                        Id: 0,
-                        Title: 'Terminator',
-                        Year: '1991',
-                        Released: '05 06 1991',
-                        Director: 'Ben Hernandez'
-                    },
-                    {
-                        Id: 1,
-                        Title: 'Terminator 2',
-                        Year: '1995',
-                        Released: '05 06 1995',
-                        Director: 'Ben Hernandez'
-                    }
-                ])
-
-                // reject({
-                //     status: 500,
-                //     message: "something went"
-                // })
-            }, 5000);
-        })
+    async getMovies() {
+        const { data } =
+         await this.apiClient.get('?i=tt3896198&apikey=f915e4d&s=termin');
+        return data.Search;
     }
 
 }
