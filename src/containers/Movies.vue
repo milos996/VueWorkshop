@@ -22,37 +22,15 @@ export default {
         }
     },
 
-    async created() {
-        try {
-        console.log('created HOOK');
-
-        const movies =  await moviesServices.getMovies();
-        console.log(movies);
-
-        console.log('FINISHED GETING DATA');
-
-        this.movies = movies;
-        } catch (e) {
-            console.log('Catch', e);
-
-            this.movies = [];
-            alert(e.message)
-        }
-
-    },
-
-    mounted() {
-        console.log("I'm in mounted hook");
-
-    },
-
     methods: {
         handleSerach(searchParams) {
             this.search(searchParams)
         },
 
-        search() {
+        async search({title, type}) {
+            const movies = await moviesServices.search(title, type);
 
+            this.movies = movies;
         }
     }
 }

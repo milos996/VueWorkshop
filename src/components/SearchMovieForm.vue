@@ -10,7 +10,7 @@
             <option value="episode">Episode</option>
         </select>
 
-        <button @click="search">Search</button>
+        <button @click="search" :disabled="isTitleEmpty">Search</button>
     </div>
 </template>
 
@@ -34,6 +34,12 @@ export default {
                 type: this.selectedType
             })
         }
-    }
+    },
+
+    computed: {
+        isTitleEmpty() {
+            return this.title.length === 0;
+        }
+    },
 }
 </script>
