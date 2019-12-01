@@ -11,7 +11,7 @@ import axios from 'axios'
 
     async getMovies() {
         const { data } =
-         await this.apiClient.get('?i=tt3896198&apikey=f915e4d&s=termin');
+         await this.apiClient.get('?i=tt3896198&apikey=f915e4d&s=terminator');
         return data.Search;
     }
 
